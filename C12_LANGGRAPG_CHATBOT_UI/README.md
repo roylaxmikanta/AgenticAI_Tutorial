@@ -214,15 +214,24 @@ HUGGINGFACEHUB_API_TOKEN="your_hf_token_here"
 
 ### Running the Chatbot
 
-**Start Streamlit Application:**
+From the **project root** (the folder that contains `C12_LANGGRAPG_CHATBOT_UI/`), run:
+
+**Start Streamlit Application (main UI):**
 ```bash
-streamlit run streamlit_frontend.py
+streamlit run C12_LANGGRAPG_CHATBOT_UI/streamlit_frontend.py
 ```
 
 **Access the application:**
-```
+```text
 http://localhost:8501
 ```
+
+**(Optional) Start Streamlit Application (streaming-focused UI):**
+```bash
+streamlit run C12_LANGGRAPG_CHATBOT_UI/streamlit_frontend_streaming.py
+```
+http://localhost:8501
+streamlit run C12_LANGGRAPG_CHATBOT_UI/streamlit_frontend.py
 
 ### Features:
 ✅ Real-time chat interface  
@@ -280,12 +289,13 @@ HF-ChatHub/
 
 ### Environment Variables
 
-Create a `.env` file in the project root:
+Create a `.env` file in the **project root** (same folder where you run Streamlit):
 
 ```env
 # Required: Hugging Face API Token
 HUGGINGFACEHUB_API_TOKEN="hf_your_token_here"
 ```
+HUGGINGFACEHUB_API_TOKEN="hf_your_token_here"
 
 **How to get your API token:**
 1. Go to https://huggingface.co/settings/tokens
