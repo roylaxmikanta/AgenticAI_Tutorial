@@ -65,4 +65,3 @@ if user_input:
         st.error(f"Error getting response: {str(e)}")
         # Keep history consistent even on failure
         st.session_state["messages_history"].append({"role": "assistant", "content": f"[Error] {str(e)}"})
-
