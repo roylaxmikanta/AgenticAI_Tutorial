@@ -4,7 +4,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from langgraph_database_backend import chatbot, invoke_chatbot, retrieve_all_threads
+from C15_LangGraph_SQLite_Database_Integration.langgraph_database_backend import chatbot, invoke_chatbot, retrieve_all_threads, stream_chatbot
+
 from langchain_core.messages import HumanMessage, AIMessage
 import uuid
 
@@ -93,13 +94,8 @@ if user_input:
     ai_message_content = ""
     with st.chat_message("assistant"):
         try:
-            for message_chunk, metadata in chatbot.stream(
-                {"messages": [HumanMessage(content=user_input)]},
-                config=CONFIG,
-                stream_mode="messages"
-            ):
-                if isinstance(message_chunk, AIMessage):
-                    ai_message_content += message_chunk.content
+            for text in stream_chatbot([HumanMessage(content=user_input)], thread_id=st.session_state['thread_id']):
+                ai_message_content += text
             st.markdown(ai_message_content)
         except Exception as e:
             st.error(f"Error: {str(e)}")
